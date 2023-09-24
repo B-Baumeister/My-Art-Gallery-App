@@ -13,6 +13,10 @@ const nextConfig = {
 
     return config;
   },
+  reactStrictMode: true,
+  images: {
+    domains: ["images.unsplash.com"],
+  },
 };
 
 module.exports = nextConfig;
