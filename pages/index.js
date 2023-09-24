@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ArtPieces from "./components/ArtPieces";
 import useSWR from "swr";
 //für normale RESTfull APIs with JSON data
 //wir benötigen eine fetcher function (ist wie wrapper der normalen fetch funktion)
@@ -11,13 +11,11 @@ export default function HomePage() {
     "https://example-apis.vercel.app/api/art",
     fetcher
   );
-  console.log(data[1].name);
+
   return (
     <div>
       <h1>Hello from Next.js</h1>
-
-      <p>{data[1].slug}</p>
-      <Image src={data[1].imageSource} width={200} height={200} alt="hi" />
+      <ArtPieces pieces={isLoading || error ? [] : data} />
     </div>
   );
 }
