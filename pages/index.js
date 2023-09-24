@@ -5,18 +5,19 @@ import useSWR from "swr";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 //jetzt kann man die Funktion aufrufen als Componente
-function Character() {
-  const { data } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
-
-  // render data
-  return <div>Hello {data.name}!</div>; // Hello Luke Skywalker!
-}
 
 export default function HomePage() {
+  const { data, isLoading, error } = useSWR(
+    "https://example-apis.vercel.app/api/art",
+    fetcher
+  );
+  console.log(data[1].name);
   return (
     <div>
       <h1>Hello from Next.js</h1>
-      <Image src={data.imageSource} width={200} height={200} alt="hi" />
+
+      <p>{data[1].slug}</p>
+      <Image src={data[1].imageSource} width={200} height={200} alt="hi" />
     </div>
   );
 }
